@@ -81,7 +81,6 @@ textarea {
 }
 textarea {
   resize: none;
-  height:11rem;
 }
 
 body {
@@ -714,11 +713,12 @@ div .invalid_feedback {
   left: 0;
   width: 100%;
   height: 100%;
+  word-wrap: break-word;
   border: 2px solid var(--first-color);
   background: none;
   color: var(--text-color);
   outline: none;
-  padding: 1.5rem;
+  /* padding: 1.5rem; */
   border-radius: 0.75rem;
   z-index: 1;
 }
