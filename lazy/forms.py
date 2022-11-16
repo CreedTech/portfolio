@@ -7,7 +7,7 @@ class ContactForm(forms.ModelForm):
     name = forms.CharField(max_length=120,
         widget=forms.TextInput(
                 attrs={
-                    "placeholder": "Insert your name",
+                    "placeholder": "   Insert your name",
                     "class": "contact__form-input"
                 }
             )
@@ -15,7 +15,7 @@ class ContactForm(forms.ModelForm):
     email = forms.EmailField(
         widget=forms.TextInput(
                 attrs={
-                    "placeholder": "Insert your email",
+                    "placeholder": "   Insert your email",
                     "class": "contact__form-input"
                 }
             )
@@ -23,7 +23,7 @@ class ContactForm(forms.ModelForm):
     inquiry = forms.CharField(
         widget=forms.TextInput(
                 attrs={
-                    "placeholder": "Place your inquiry",
+                    "placeholder": "   Place your inquiry",
                     "class": "contact__form-input"
                 }
             )
@@ -31,7 +31,7 @@ class ContactForm(forms.ModelForm):
     message = forms.CharField(
         widget=forms.TextInput(
                 attrs={
-                    "placeholder": "Write your project!",
+                    "placeholder": "   Write your project!",
                     "class": "contact__form-input contact__form-area",
                     "type": "textarea",
                     "row": 20,

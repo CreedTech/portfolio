@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!--=============== FAVICON ===============-->
-        <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+        <link rel="shortcut icon" href="{% static 'assets/images/logo.jpeg' %}" type="image/x-icon">
 
         <!--=============== BOXICONS ===============-->
         <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
@@ -27,7 +27,11 @@
         <!--=============== HEADER ===============-->
         <header class="header" id="header">
             <nav class="nav bd-grid">
+                {% if home %}
                 <a href="#" class="nav__logo">{{ home.name }}</a>
+                {%else%}
+                <a href="#" class="nav__logo">ayoola</a>
+                {% endif %}
 
                 <div class="nav__menu">
                     <ul class="nav__list">
@@ -69,7 +73,12 @@
             <section class="home" id="home">
                 <div class="home__container bd-grid">
                     <div class="home__box">
+                        {% if home %}
                         <h1 class="home__title"><span>{{home.greetings_1}}</span><br>{{home.greetings_2}}.</h1>
+                        {% else %}
+                        <h1 class="home__title"><span>I'm Ayoola</span><br>I'm a dedicated and conscientious developer with great communication skills and excellent professional settings.</h1>
+                        {% endif %}
+                        
                     <h3 class="home__education">I'M <span class="input"></span></h3>
                     </div>
 
@@ -90,16 +99,26 @@
 
                 <div class="about__container bd-grid">
                     <div class="about__img">
+                        {% if about %}
                         <img src="{{ about.profile_img.url }}" alt="">
+                        {% else %}
+                        <img src="{% static 'assets/images/2022_04_17_11_28_IMG_2986.JPG' %}" alt="">
+                        {% endif %}
+                        
                     </div>
 
                     <div class="about__data">
+                        {% if about %}
                         <h2 class="about__subtitle">{{about.heading}}</h2>
+                        {% else %}
+                        <h2 class="about__subtitle">I'm a Software Developer located in Nigeria.</h2>
+                        {% endif %}
+                        
                         <div class="about__info">
                             <div class="about__box">
                                 <i class="bx bx-award about__icon"></i>
                                 <h3 class="about__title">Experience</h3>
-                                <span class="about__subtitle">3 Years Experience</span>
+                                <span class="about__subtitle">3 Years+ Experience</span>
                             </div>
                             <div class="about__box">
                                 <i class="bx bx-briefcase-alt about__icon"></i>
@@ -112,12 +131,28 @@
                                 <span class="about__subtitle">Online 24/7</span>
                             </div>
                         </div>
+                        {% if about %}
                         <p class="about__description">{{about.description}}</p>
+                        {% else %}
+                        <p class="about__description">I'm a dedicated and conscientious developer with great communication skills and excellent professional settings. I'm an independent freelancer. I love to code and debug😅.
+
+                            excited by all the challenges inherent in the position and look forward to the opportunities it presents. You can connect with me via my social links.</p>
+                        {% endif %}
+                        
+                        {% if profiles %}
                         <div class="about__social">
                             {% for profiles in profiles.all %}
                             <a href="{{  profiles.link }}" class="about__social-icon"><i class='bx bxl-{{ profiles.social_name}}' ></i></a>
                             {% endfor %} 
                         </div>
+                        {% else %}
+                        <div class="about__social">
+                            <a href="https://www.linkedin.com/in/ayodele-ayoola-78a5341b2" class="about__social-icon"><i class='bx bxl-linkedin' ></i></a>
+                            <a href="https://www.twitter.com/techy_ayo" class="about__social-icon"><i class='bx bxl-twitter' ></i></a>
+                            <a href="https://www.github.com/creedtech" class="about__social-icon"><i class='bx bxl-github' ></i></a>
+                        </div>
+                        {% endif %}
+                        
                         <a href="#contact" class="hvr-shutter-in-horizontal about__button">Contact Me</a>
                     </div>
                 </div>
@@ -128,6 +163,7 @@
                 <span class="section__subtitle">My Skills</span>
                 <h2 class="section__title">My Experience</h2>
 
+                {% if categories %}
                 <div class="skills__container container grid">
                     {% for category in categories %}
                     <div class="skills__content skills__content-one">
@@ -148,6 +184,23 @@
                     </div>
                     {% endfor %}
                 </div>
+                {% else %}
+                <div class="skills__container container grid">
+                    <div class="skills__content skills__content-one">
+                        <h3 class="skills__title"><i class="bx bxs-badge-check"></i> FRONTEND</h3>
+                    </div>
+                    <div class="skills__content skills__content-one">
+                        <h3 class="skills__title"><i class="bx bxs-badge-check"></i> BACKEND</h3>
+                    </div>
+                    <div class="skills__content skills__content-one">
+                        <h3 class="skills__title"><i class="bx bxs-badge-check"></i> MOBILE</h3>
+                    </div>
+                    <div class="skills__content skills__content-one">
+                        <h3 class="skills__title"><i class="bx bxs-badge-check"></i> WEB</h3>
+                    </div>
+                </div>
+                {% endif %}
+                
             </section>
 
            
@@ -159,10 +212,11 @@
                 <div class="work__filters">
                     <span class="work__item active-work" data-filter='all'>All</span>
                     <span class="work__item" data-filter='.web'>Web</span>
-                    <span class="work__item" data-filter='.Mobile'>Mobile</span>
+                    <span class="work__item" data-filter='.mobile'>Mobile</span>
                     <span class="work__item" data-filter='.Console'>Console</span>
                 </div>
 
+                {% if portfolios %}
                 <div class="work__container bd-grid">
                     {% for portfolio in portfolios %}
                         <div class="work__img mix {{ portfolio.category }}">
@@ -175,6 +229,22 @@
                         </div>
                         {% endfor %}
                 </div>
+                {% else %}
+                <div class="work__container bd-grid">
+                    <a href="" class="work__link-name">
+                        No portfolio Uploaded<i class="bx bx-right-arrow-alt work__icon"></i>
+                    </a>
+                        <div class="work__img ">
+                            <img src="{% static 'assets/images/portfolio/404.png' %}" alt="">
+                            <div class="work__link">
+                                <a href="" class="work__link-name">
+                                    No portfolio Uploaded<i class="bx bx-right-arrow-alt work__icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                </div>
+                {% endif %}
+                
             </section>
 
             <!--=============== TESTIMONIALS ===============-->
@@ -183,6 +253,7 @@
                 <h2 class="section__title">Testimonials</h2>
 
                 <div class="testimonial__container container swiper">
+                    {% if testimonials %}
                     <div class="swiper-wrapper">
                         {% for testimonial in testimonials %}
                         <div class="testimonial__card swiper-slide">
@@ -196,6 +267,23 @@
                         {% endfor %}
 
                     </div>
+                    {% else %}
+                    <div class="swiper-wrapper">
+                        <div class="testimonial__card swiper-slide">
+                            <a href="" class="testimonial__name">
+                            No Testimonials Uploaded
+                        </a>
+                            <!-- <img src="{{ testimonial.profile_img.url }}" alt="" class="testimonial__img">
+
+                            <h3 class="testimonial__name">{{ testimonial.heading }}</h3>
+                            <p class="testimonial__description">
+                                {{ testimonial.description }}
+                            </p> -->
+                        </div>
+
+                    </div>
+                    {% endif %}
+                    
                     <div class="swiper-pagination"></div>
                 </div>
             </section>
@@ -305,10 +393,10 @@
                         <a href="https://www.facebook.com/ayoola.oke.96" target="_blank" class="footer__social-link">
                             <i class="bx bxl-facebook"></i>
                         </a>
-                        <a href="https://www.instagram.com/" target="_blank" class="footer__social-link">
-                            <i class="bx bxl-instagram"></i>
+                        <a href="https://www.github.com/creedtech" target="_blank" class="footer__social-link">
+                            <i class="bx bxl-github"></i>
                         </a>
-                        <a href="https://www.twitter.com/" target="_blank" class="footer__social-link">
+                        <a href="https://www.twitter.com/techy_ayo" target="_blank" class="footer__social-link">
                             <i class="bx bxl-twitter"></i>
                         </a>
                     </ul>
